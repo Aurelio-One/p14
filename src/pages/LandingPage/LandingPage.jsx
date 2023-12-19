@@ -1,5 +1,13 @@
+import AddEmployeeForm from '../../components/EmployeeForm/EmployeeForm'
+
 function LandingPage() {
-  return <>Landing Page</>
+  return (
+    <main>
+      <div className='container'>
+        <AddEmployeeForm />
+      </div>
+    </main>
+  )
 }
 
 export default LandingPage
