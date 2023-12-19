@@ -14,15 +14,11 @@ export const formSlice = createSlice({
       code: '',
       department: '',
     },
-    dataEmployee: [],
     isSubmitted: false,
   },
   reducers: {
     setData: (state, action) => {
       state.data = { ...state.data, ...action.payload }
-    },
-    setDataEmployee: (state, action) => {
-      state.dataEmployee = action.payload
     },
     setIsSubmitted: (state, action) => {
       state.isSubmitted = action.payload
@@ -30,5 +26,5 @@ export const formSlice = createSlice({
   },
 })
 
-export const { setData, setDataEmployee, setIsSubmitted } = formSlice.actions
+export const { setData, setIsSubmitted } = formSlice.actions
 export default formSlice.reducer

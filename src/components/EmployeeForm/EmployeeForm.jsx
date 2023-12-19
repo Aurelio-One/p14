@@ -18,10 +18,10 @@ function AddEmployeeForm() {
   const { data, isSubmitted } = useSelector((state) => state.form)
   const { errorsMsg } = useSelector((state) => state.error)
 
-  const { handleChange, saveEmployee, resetForm } = useFormData()
-
   const [stateOptions, setStateOptions] = useState([])
   const [departmentOptions, setDepartmentOptions] = useState([])
+
+  const { handleChange, saveEmployee, resetForm } = useFormData()
 
   useEffect(() => {
     dispatch(
@@ -169,9 +169,10 @@ function AddEmployeeForm() {
                 name='state'
                 id='state'
                 options={stateOptions}
-                value={stateOptions.find(
-                  (option) => option.value === data.state
-                )}
+                value={
+                  stateOptions.find((option) => option.value === data.state) ||
+                  null
+                }
                 onChange={(selectedOption) =>
                   handleChange({
                     target: { name: 'state', value: selectedOption.value },
@@ -204,9 +205,11 @@ function AddEmployeeForm() {
               name='department'
               id='department'
               options={departmentOptions}
-              value={departmentOptions.find(
-                (option) => option.value === data.department
-              )}
+              value={
+                departmentOptions.find(
+                  (option) => option.value === data.department
+                ) || null
+              }
               onChange={(selectedOption) =>
                 handleChange({
                   target: { name: 'department', value: selectedOption.value },

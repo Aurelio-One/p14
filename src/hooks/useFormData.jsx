@@ -1,15 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  setData,
-  setDataEmployee,
-  setIsSubmitted,
-} from '../features/form/formSlice'
+import { setData, setIsSubmitted } from '../features/form/formSlice'
 import { setErrorsMsg } from '../features/error/errorSlice'
 import useErrorMsg from './useErrorMsg'
 
 const useFormData = () => {
   const dispatch = useDispatch()
-  const { data, dataEmployee } = useSelector((state) => state.form)
+  const { data } = useSelector((state) => state.form)
   const { validateField } = useErrorMsg()
 
   const initialData = {
@@ -62,7 +58,6 @@ const useFormData = () => {
     dispatch(setErrorsMsg(newErrors))
 
     if (!hasErrors) {
-      dispatch(setDataEmployee([...dataEmployee, data]))
       dispatch(setIsSubmitted(true))
       resetForm()
     } else {
