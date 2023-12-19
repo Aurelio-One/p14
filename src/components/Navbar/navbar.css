@@ -1,62 +1,80 @@
 .navbar {
   display: flex;
-  max-width: 100%;
-  height: 10rem;
+  width: 100%;
+  height: var(--navbar-height);
   justify-content: space-between;
   align-items: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 1rem;
 }
 
 .navbar-logo {
-  width: 10%;
+  flex-shrink: 0; /* Empêche le logo de se redimensionner */
 }
 
 .navbar-logo-img {
-  width: 100%;
+  height: auto;
+  max-height: var(--navbar-height); /* Taille maximale de logo basée sur la hauteur de la barre de navigation */
 }
 
 .navbar-content {
   display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-content-path {
-  margin-left: 2rem;
-  list-style: none;
-  padding: 0.7rem;
-  color: black;
-}
-
-.navbar-content-path a:hover {
-  transform: scale(1.1);
-}
-
-.navbar-content-path a.active {
-  color: blue;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.button-path {
-  border-radius: 15px;
-  background-color: #718a1d;
-}
-
-.button-path:hover {
-  color: white;
-}
-
-.navbar-content-path a.active {
-  border-bottom: 2px solid #6d8519;
-  padding-bottom: 0.2rem;
-  color: #6d8519;
+  padding: 0.5rem 1rem;
 }
 
 .navbar-content-path a {
-  color: black;
+  color: var(--color-text);
   text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
 
-.navbar-content-path:hover {
-  transform: scale(1.1);
-  color: rgb(3, 65, 3);
+.navbar-content-path a:hover,
+.navbar-content-path a:focus {
+  color: var(--color-hover);
+  text-decoration: none; /* Supprime le soulignement pour un effet de survol propre */
+}
+
+.navbar-content-path a.active {
+  color: var(--color-primary);
+  font-weight: bold;
+  border-bottom: 3px solid var(--color-active);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+
+  .navbar-content {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-content-path {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-content-path a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-logo-img {
+    max-width: 80%; /* Réduit la taille du logo sur les petits écrans */
+    max-height: auto;
+  }
 }
