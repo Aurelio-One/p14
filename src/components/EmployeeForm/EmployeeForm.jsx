@@ -10,8 +10,8 @@ import states from '../../data/states'
 import departments from '../../data/departments'
 
 import useFormData from '../../hooks/useFormData'
-import { setData, setIsSubmitted } from '../../features/form/formSlice'
-import { setErrorsMsg } from '../../features/error/errorSlice'
+import { setData, setIsSubmitted } from '../../slices/form/formSlice'
+import { setErrorsMsg } from '../../slices/error/errorSlice'
 
 function AddEmployeeForm() {
   const dispatch = useDispatch()
@@ -61,7 +61,7 @@ function AddEmployeeForm() {
   }
 
   const handleSubmit = (e) => {
-    saveEmployee(e)
+    saveEmployee(e, data)
     if (isSubmitted) {
       resetForm()
     }

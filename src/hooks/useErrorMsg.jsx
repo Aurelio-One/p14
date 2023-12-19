@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { setErrorsMsg } from '../features/error/errorSlice'
+import { setErrorsMsg } from '../slices/error/errorSlice'
 
 const useErrorMsg = () => {
   const dispatch = useDispatch()

@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { setData, setIsSubmitted } from '../features/form/formSlice'
-import { setErrorsMsg } from '../features/error/errorSlice'
+import { setData, setIsSubmitted } from '../slices/form/formSlice'
+import { setErrorsMsg } from '../slices/error/errorSlice'
 import useErrorMsg from './useErrorMsg'
+import { addUser } from '../slices/user/userSlice'; 
 
 const useFormData = () => {
   const dispatch = useDispatch()
@@ -58,6 +59,7 @@ const useFormData = () => {
     dispatch(setErrorsMsg(newErrors))
 
     if (!hasErrors) {
+      dispatch(addUser(data))
       dispatch(setIsSubmitted(true))
       resetForm()
     } else {
