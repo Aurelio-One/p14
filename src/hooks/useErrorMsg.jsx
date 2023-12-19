@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
 import { setErrorsMsg } from '../features/error/errorSlice'
-import moment from 'moment'
 
 const useErrorMsg = () => {
   const dispatch = useDispatch()
@@ -18,18 +17,6 @@ const useErrorMsg = () => {
           errorMsg = !regex.test(value)
             ? `The ${name} field must contain only letters`
             : ''
-        }
-        break
-
-      case 'dateOfBirth':
-      case 'startDate':
-        if (!value) {
-          errorMsg = `The ${name} field is required.`
-        } else {
-          const formattedDate = moment(value, 'MM/DD/YYYY', true)
-          if (!formattedDate.isValid()) {
-            errorMsg = `The entered date for the field ${name} is invalid.`
-          }
         }
         break
 

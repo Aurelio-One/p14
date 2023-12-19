@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import '../../Datepicker.css'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 function AddEmployeeForm() {
   const { errorsMsg } = useSelector((state) => state.error)
   const [stateOptions, setStateOptions] = useState([])
@@ -163,6 +166,9 @@ function AddEmployeeForm() {
           Save
         </button>
       </form>
+      {isSubmitted && <Modal text='Employee successfully created !' />}
     </div>
   )
+}
+
 export default AddEmployeeForm
