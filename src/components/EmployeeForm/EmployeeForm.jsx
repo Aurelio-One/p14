@@ -1,11 +1,72 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import './EmployeeForm.css'
 import '../../Datepicker.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import Modal from '../Modal/Modal'
+import Select from 'react-select'
+import states from '../../data/states'
+import departments from '../../data/departments'
+
+import useFormData from '../../hooks/useFormData'
+import { setData, setIsSubmitted } from '../../features/form/formSlice'
+import { setErrorsMsg } from '../../features/error/errorSlice'
+
 function AddEmployeeForm() {
+  const dispatch = useDispatch()
+  const { data, isSubmitted } = useSelector((state) => state.form)
   const { errorsMsg } = useSelector((state) => state.error)
+
+  const { handleChange, saveEmployee, resetForm } = useFormData()
+
   const [stateOptions, setStateOptions] = useState([])
   const [departmentOptions, setDepartmentOptions] = useState([])
+
+  useEffect(() => {
+    dispatch(
+      setData({
+        firstname: '',
+        lastname: '',
+        dateOfBirth: '',
+        startDate: '',
+        street: '',
+        city: '',
+        state: '',
+        code: '',
+        department: '',
+      })
+    )
+    dispatch(setIsSubmitted(false))
+
+    setStateOptions(
+      states.map((state) => ({ value: state.name, label: state.name }))
+    )
+
+    setDepartmentOptions(
+      departments.map((department) => ({
+        value: department,
+        label: department,
+      }))
+    )
+  }, [dispatch])
+
+  const handleDateChange = (date, fieldName) => {
+    const formattedDate = date ? date.toISOString().split('T')[0] : ''
+    dispatch(setData({ ...data, [fieldName]: formattedDate }))
+
+    if (date) {
+      dispatch(setErrorsMsg({ ...errorsMsg, [fieldName]: '' }))
+    }
+  }
+
+  const handleSubmit = (e) => {
+    saveEmployee(e)
+    if (isSubmitted) {
+      resetForm()
+    }
+  }
+
   return (
     <div className='add-employee-form'>
       <h2 className='form-title'>HR NET - Create employee</h2>
