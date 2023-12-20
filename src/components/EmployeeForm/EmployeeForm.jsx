@@ -40,7 +40,7 @@ function AddEmployeeForm() {
     dispatch(setIsSubmitted(false))
 
     setStateOptions(
-      states.map((state) => ({ value: state.name, label: state.name }))
+      states.map((state) => ({ value: state.abbreviation, label: state.name }))
     )
 
     setDepartmentOptions(
@@ -52,7 +52,13 @@ function AddEmployeeForm() {
   }, [dispatch])
 
   const handleDateChange = (date, fieldName) => {
-    const formattedDate = date ? date.toISOString().split('T')[0] : ''
+    const formattedDate = date
+      ? date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        })
+      : ''
     dispatch(setData({ ...data, [fieldName]: formattedDate }))
 
     if (date) {
@@ -111,7 +117,7 @@ function AddEmployeeForm() {
             <DatePicker
               selected={data.dateOfBirth ? new Date(data.dateOfBirth) : null}
               onChange={(date) => handleDateChange(date, 'dateOfBirth')}
-              dateFormat='yyyy-MM-dd'
+              dateFormat='MM/dd/yyyy'
               className={errorsMsg.dateOfBirth ? 'error' : ''}
             />
             {errorsMsg.dateOfBirth && (
@@ -124,7 +130,7 @@ function AddEmployeeForm() {
             <DatePicker
               selected={data.startDate ? new Date(data.startDate) : null}
               onChange={(date) => handleDateChange(date, 'startDate')}
-              dateFormat='yyyy-MM-dd'
+              dateFormat='MM/dd/yyyy'
               className={errorsMsg.startDate ? 'error' : ''}
             />
             {errorsMsg.startDate && (
@@ -169,17 +175,20 @@ function AddEmployeeForm() {
                 name='state'
                 id='state'
                 options={stateOptions}
-                value={
-                  stateOptions.find((option) => option.value === data.state) ||
-                  null
-                }
+                value={stateOptions.find(
+                  (option) => option.value === data.state
+                )}
                 onChange={(selectedOption) =>
                   handleChange({
-                    target: { name: 'state', value: selectedOption.value },
+                    target: {
+                      name: 'state',
+                      value: selectedOption ? selectedOption.value : '',
+                    },
                   })
                 }
                 className={errorsMsg.state ? 'error' : ''}
               />
+
               {errorsMsg.state && (
                 <p className='form-error'>{errorsMsg.state}</p>
               )}
