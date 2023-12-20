@@ -1,0 +1,99 @@
+.EmployeesPage {
+  padding: 1rem;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+.EmployeesPage .Table {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.EmployeesPage th,
+.EmployeesPage td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-lightgrey);
+}
+
+.EmployeesPage .TableHeader {
+  background-color: var(--color-lightgrey);
+}
+
+.EmployeesPage .TableHeaderCell:first-child {
+  border-top-left-radius: 4px;
+}
+
+.EmployeesPage .TableHeaderCell:last-child {
+  border-top-right-radius: 4px;
+}
+
+.EmployeesPage .TableRow:last-child .TableCell:first-child {
+  border-bottom-left-radius: 4px;
+}
+
+.EmployeesPage .TableRow:last-child .TableCell:last-child {
+  border-bottom-right-radius: 4px;
+}
+
+.GlobalFilter {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.GlobalFilter input {
+  padding: 0.5rem;
+  border: 1px solid var(--color-lightgrey);
+  border-radius: 4px;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.PaginationControls {
+  display: flex;
+  align-items: center;
+}
+
+.Pagination button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 54px;
+  width: 54px;
+  transition: background-color 0.2s ease;
+}
+
+.Pagination button:hover {
+  background-color: var(--color-hover);
+}
+
+.Pagination button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .EmployeesPage .Table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .GlobalFilter {
+    text-align: center;
+  }
+}
