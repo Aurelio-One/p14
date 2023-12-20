@@ -14,8 +14,8 @@ body {
 
 :root {
   --color-primary: #6d8519;
-  --color-border: #c4c4c4;
   --color-error: #ff4d4d;
+  --color-lightgrey: #e3e3e3;
 
   --color-hover: #536317;
   --color-active: #93af2f;
@@ -39,4 +39,3 @@ body {
     padding: 10px;
   }
 }
-
