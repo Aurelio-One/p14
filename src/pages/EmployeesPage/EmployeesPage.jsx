@@ -11,6 +11,18 @@ import Select from 'react-select'
 
 import './EmployeesPage.css'
 
+function filterOnlyNameAndLastName(rows, id, filterValue) {
+  return rows.filter((row) => {
+    const firstName = row.values.firstname || ''
+    const lastName = row.values.lastname || ''
+    const searchStr = filterValue.toLowerCase()
+    return (
+      firstName.toLowerCase().includes(searchStr) ||
+      lastName.toLowerCase().includes(searchStr)
+    )
+  })
+}
+
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
   const [value, setValue] = useState(globalFilter)
   const onChange = useAsyncDebounce((value) => {
@@ -72,7 +84,12 @@ function EmployeesPage() {
     setGlobalFilter,
     prepareRow,
   } = useTable(
-    { columns, data, initialState: { pageIndex: 0, pageSize: 10 } },
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0, pageSize: 10 },
+      globalFilter: filterOnlyNameAndLastName,
+    },
     useGlobalFilter,
     useSortBy,
     usePagination
