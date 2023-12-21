@@ -170,47 +170,49 @@ function EmployeesPage() {
             Showing {firstRowOnPage} to {lastRowOnPage} of {totalRows} entries
           </span>
           <div className='PaginationControls'>
-            <button
-              onClick={() => gotoPage(0)}
-              disabled={!canPreviousPage}
-            >
-              {'<<'}
-            </button>
-            <button
-              onClick={() => previousPage()}
-              disabled={!canPreviousPage}
-            >
-              {'<'}
-            </button>
+            <div>
+              <button
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+              >
+                {'<<'}
+              </button>
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                {'<'}
+              </button>{' '}
+            </div>
             <span>
               Page{' '}
               <strong>
                 {pageIndex + 1} of {pageOptions.length}
               </strong>
             </span>
-            <button
-              onClick={() => nextPage()}
-              disabled={!canNextPage}
-            >
-              {'>'}
-            </button>
-            <button
-              onClick={() => gotoPage(pageCount - 1)}
-              disabled={!canNextPage}
-            >
-              {'>>'}
-            </button>
-            <Select
-              className='PageSizeSelect'
-              value={pageSizeOptions.find(
-                (option) => option.value === pageSize
-              )}
-              onChange={handlePageSizeChange}
-              options={pageSizeOptions}
-              isClearable={false}
-              isSearchable={false}
-            />
-          </div>
+            <div>
+              <button
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
+                {'>'}
+              </button>
+              <button
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                {'>>'}
+              </button>
+            </div>
+          </div>{' '}
+          <Select
+            className='PageSizeSelect'
+            value={pageSizeOptions.find((option) => option.value === pageSize)}
+            onChange={handlePageSizeChange}
+            options={pageSizeOptions}
+            isClearable={false}
+            isSearchable={false}
+          />
         </div>
       </div>
     </div>

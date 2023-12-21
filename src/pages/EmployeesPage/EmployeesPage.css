@@ -67,8 +67,7 @@
   background-color: var(--color-primary);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
+  margin: 0 5px;
   cursor: pointer;
   border-radius: 4px;
   height: 54px;
@@ -118,4 +117,19 @@
   .EmployeesPage .TableCell[data-label='State']:before {
     content: 'State/City';
   }
+
+  .Pagination {
+    display: block;
+    text-align: center;
+  }
+  .PaginationControls {
+    margin-top: 10px;
+    justify-content: space-between;
+    margin: 10px -5px;
+  }
+  .Pagination button {
+
+    height: 42px;
+    width: 42px;
+}
 }
