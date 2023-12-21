@@ -154,6 +154,7 @@ function EmployeesPage() {
                       <td
                         {...cell.getCellProps()}
                         className='TableCell'
+                        data-label={cell.column.Header}
                       >
                         {cell.render('Cell')}
                       </td>

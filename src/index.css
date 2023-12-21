@@ -16,8 +16,8 @@ body {
   --color-primary: #6d8519;
   --color-error: #ff4d4d;
   --color-lightgrey: #e3e3e3;
+  --color-ultralightgrey: #f3f5f6;
 
-  --color-hover: #536317;
   --color-active: #93af2f;
   --color-text: #383838;
   --navbar-height: 5rem;
