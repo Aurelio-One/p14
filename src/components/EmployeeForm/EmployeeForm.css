@@ -141,3 +141,52 @@ input:focus {
     top: 1rem;
   }
 }
+
+.m-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-content {
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 500px;
+}
+
+.m-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.m-body {
+  font-size: 1.2rem;
+}
+
+.m-footer {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.m-close-button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  background-color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .m-content {
+    width: 90%;
+  }
+}

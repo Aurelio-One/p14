@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+
 import { useSelector, useDispatch } from 'react-redux'
-import './EmployeeForm.css'
 import '../../Datepicker.css'
 import DatePicker from 'react-datepicker'
+import Modal from 'am-react-modal'
+import './EmployeeForm.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import Modal from '../Modal/Modal'
 import Select from 'react-select'
 import states from '../../data/states'
 import departments from '../../data/departments'
@@ -20,6 +21,7 @@ function AddEmployeeForm() {
 
   const [stateOptions, setStateOptions] = useState([])
   const [departmentOptions, setDepartmentOptions] = useState([])
+  const [isModalOpen, setModalOpen] = useState(false)
 
   const { handleChange, saveEmployee, resetForm } = useFormData()
 
@@ -42,7 +44,6 @@ function AddEmployeeForm() {
     setStateOptions(
       states.map((state) => ({ value: state.abbreviation, label: state.name }))
     )
-
     setDepartmentOptions(
       departments.map((department) => ({
         value: department,
@@ -66,11 +67,23 @@ function AddEmployeeForm() {
     }
   }
 
-  const handleSubmit = (e) => {
-    saveEmployee(e, data)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await saveEmployee(e, data)
     if (isSubmitted) {
-      resetForm()
+      setModalOpen(true)
     }
+  }
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setModalOpen(true)
+    }
+  }, [isSubmitted])
+
+  const handleCloseModal = () => {
+    setModalOpen(false)
+    resetForm()
   }
 
   return (
@@ -239,7 +252,23 @@ function AddEmployeeForm() {
           Save
         </button>
       </form>
-      {isSubmitted && <Modal text='Employee successfully created !' />}
+
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          title='Employee Added'
+          content={
+            <p>The employee has been successfully added to your database.</p>
+          }
+          overlayClassName='m-overlay'
+          contentClassName='m-content'
+          titleClassName='m-title'
+          bodyClassName='m-body'
+          footerClassName='m-footer'
+          closeButtonClassName='m-close-button'
+        />
+      )}
     </div>
   )
 }
