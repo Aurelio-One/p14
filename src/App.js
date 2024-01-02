@@ -6,6 +6,10 @@ import EmployeesPage from './pages/EmployeesPage/EmployeesPage'
 import ErrorPage from './pages/ErrorPage/ErrorPage'
 import Navbar from './components/Navbar/Navbar'
 
+/**
+ * Main application component.
+ * It sets up the Redux provider, router, and defines the application's main routes.
+ */
 function App() {
   return (
     <Provider store={store}>

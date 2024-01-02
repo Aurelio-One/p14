@@ -1,9 +1,23 @@
 import { useDispatch } from 'react-redux'
 import { setErrorsMsg } from '../slices/error/errorSlice'
 
+/**
+ * Custom hook for managing form field validation errors.
+ * It dispatches actions to update error messages in the global state.
+ *
+ * @returns {Object} An object containing the `validateField` function.
+ */
 const useErrorMsg = () => {
   const dispatch = useDispatch()
 
+  /**
+   * Validates a form field and updates the error message state.
+   * It checks different form fields like firstname, lastname, street, etc.,
+   * and sets appropriate error messages based on the validation rules.
+   *
+   * @param {string} name - The name of the form field to validate.
+   * @param {string} value - The current value of the form field.
+   */
   const validateField = (name, value) => {
     let errorMsg = ''
 

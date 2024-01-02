@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// Initial state of the user slice with predefined users
 const initialState = {
   users: [
     {
@@ -467,10 +468,21 @@ const initialState = {
   ],
 }
 
+/**
+ * Redux slice for managing user data.
+ * It contains state and reducers to handle user-related actions in the application.
+ */
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    /**
+     * Reducer for adding a new user.
+     * Appends a user object to the existing users array in the state.
+     *
+     * @param {object} state - The current state of the user slice.
+     * @param {object} action - The action object containing payload with user data.
+     */
     addUser: (state, action) => {
       state.users.push(action.payload)
     },

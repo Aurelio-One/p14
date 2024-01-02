@@ -1,7 +1,12 @@
+import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import logo from '../../assets/logo_wealth_health.jpg'
 import './navbar.css'
 
+/**
+ * Navbar component that provides navigation links for the application.
+ * Includes links to create a new employee and view current employees.
+ */
 function Navbar() {
   return (
     <nav className='navbar'>
@@ -11,7 +16,7 @@ function Navbar() {
             src={logo}
             width='100%'
             height='100%'
-            alt='hrnet logo'
+            alt='logo of hrnet'
             className='navbar-logo-img'
           />
         </Link>

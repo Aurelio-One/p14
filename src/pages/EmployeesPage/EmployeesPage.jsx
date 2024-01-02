@@ -11,6 +11,13 @@ import Select from 'react-select'
 
 import './EmployeesPage.css'
 
+/**
+ * Custom filter function to filter table rows by first and last name.
+ * @param {Array} rows - The rows of the table.
+ * @param {string} id - The id of the column being filtered.
+ * @param {string} filterValue - The value to filter by.
+ * @returns {Array} Filtered rows.
+ */
 function filterOnlyNameAndLastName(rows, id, filterValue) {
   return rows.filter((row) => {
     const firstName = row.values.firstname || ''
@@ -23,6 +30,11 @@ function filterOnlyNameAndLastName(rows, id, filterValue) {
   })
 }
 
+/**
+ * Component for global filtering of table data.
+ * @param {string} globalFilter - The current global filter value.
+ * @param {Function} setGlobalFilter - Function to set the global filter value.
+ */
 function GlobalFilter({ globalFilter, setGlobalFilter }) {
   const [value, setValue] = useState(globalFilter)
   const onChange = useAsyncDebounce((value) => {
@@ -41,9 +53,13 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
   )
 }
 
+/**
+ * Component to display a paginated, sortable, and filterable table of employees.
+ */
 function EmployeesPage() {
   const data = useSelector((state) => state.user.users)
 
+  // Define columns for react-table
   const columns = useMemo(
     () => [
       { Header: 'First Name', accessor: 'firstname' },
@@ -59,6 +75,7 @@ function EmployeesPage() {
     []
   )
 
+  // Define page size options
   const pageSizeOptions = [
     { value: 10, label: 'Show 10' },
     { value: 20, label: 'Show 20' },
@@ -67,6 +84,7 @@ function EmployeesPage() {
     { value: 50, label: 'Show 50' },
   ]
 
+  // Hooks and methods from react-table for table handling
   const {
     getTableProps,
     getTableBodyProps,
@@ -95,10 +113,15 @@ function EmployeesPage() {
     usePagination
   )
 
+  // Calculate row information for display
   const firstRowOnPage = pageIndex * pageSize + 1
   const lastRowOnPage = firstRowOnPage + page.length - 1
   const totalRows = data.length
 
+  /**
+   * Handles changes in page size.
+   * @param {Object} selectedOption - The selected page size option.
+   */
   const handlePageSizeChange = (selectedOption) => {
     setPageSize(selectedOption.value)
   }

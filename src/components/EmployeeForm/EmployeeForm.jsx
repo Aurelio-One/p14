@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import { useSelector, useDispatch } from 'react-redux'
 import '../../Datepicker.css'
 import DatePicker from 'react-datepicker'
@@ -9,11 +8,14 @@ import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
 import states from '../../data/states'
 import departments from '../../data/departments'
-
 import useFormData from '../../hooks/useFormData'
 import { setData, setIsSubmitted } from '../../slices/form/formSlice'
 import { setErrorsMsg } from '../../slices/error/errorSlice'
 
+/**
+ * Component for adding a new employee to the system.
+ * It allows for entering employee details, validates the input, and submits the data.
+ */
 function AddEmployeeForm() {
   const dispatch = useDispatch()
   const { data, isSubmitted } = useSelector((state) => state.form)
@@ -25,6 +27,7 @@ function AddEmployeeForm() {
 
   const { handleChange, saveEmployee, resetForm } = useFormData()
 
+  // Initialize form state and options
   useEffect(() => {
     dispatch(
       setData({
@@ -52,6 +55,11 @@ function AddEmployeeForm() {
     )
   }, [dispatch])
 
+  /**
+   * Handles changes to date fields and updates the form state.
+   * @param {Date} date - The new date selected by the user.
+   * @param {string} fieldName - The field in the form state that this date corresponds to.
+   */
   const handleDateChange = (date, fieldName) => {
     const formattedDate = date
       ? date.toLocaleDateString('en-US', {
@@ -67,6 +75,10 @@ function AddEmployeeForm() {
     }
   }
 
+  /**
+   * Handles the submission of the form.
+   * @param {Event} e - The event triggered on form submission.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault()
     await saveEmployee(e, data)
@@ -75,17 +87,22 @@ function AddEmployeeForm() {
     }
   }
 
+  // Effect to handle the opening of the modal post submission
   useEffect(() => {
     if (isSubmitted) {
       setModalOpen(true)
     }
   }, [isSubmitted])
 
+  /**
+   * Closes the modal and resets the form to its initial state.
+   */
   const handleCloseModal = () => {
     setModalOpen(false)
     resetForm()
   }
 
+  // Render the form and the modal
   return (
     <div className='add-employee-form'>
       <h2 className='form-title'>HR NET - Create employee</h2>
