@@ -1,3 +1,4 @@
+import React from 'react'
 import AddEmployeeForm from '../../components/EmployeeForm/EmployeeForm'
 
 function LandingPage() {

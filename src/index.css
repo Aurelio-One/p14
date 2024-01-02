@@ -20,7 +20,7 @@ body {
 
   --color-active: #93af2f;
   --color-text: #383838;
-  --navbar-height: 5rem;
+  --navbar-height: 80px;
 }
 
 .container {

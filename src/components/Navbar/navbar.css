@@ -4,19 +4,19 @@
   height: var(--navbar-height);
   justify-content: space-between;
   align-items: center;
-  font-size: 1rem;
+  font-size: 16px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0 1rem;
+  padding: 0 16px;
 }
 
 .navbar-logo {
-  flex-shrink: 0; /* Empêche le logo de se redimensionner */
+  flex-shrink: 0;
 }
 
 .navbar-logo-img {
   height: auto;
-  max-height: var(--navbar-height); /* Taille maximale de logo basée sur la hauteur de la barre de navigation */
+  max-height: var(--navbar-height);
 }
 
 .navbar-content {
@@ -27,7 +27,7 @@
 }
 
 .navbar-content-path {
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
 }
 
 .navbar-content-path a {
@@ -39,7 +39,7 @@
 .navbar-content-path a:hover,
 .navbar-content-path a:focus {
   color: var(--color-hover);
-  text-decoration: none; /* Supprime le soulignement pour un effet de survol propre */
+  text-decoration: none;
 }
 
 .navbar-content-path a.active {
@@ -48,12 +48,11 @@
   border-bottom: 3px solid var(--color-active);
 }
 
-/* Responsive styling */
 @media (max-width: 768px) {
   .navbar {
     height: auto;
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 16px 0;
   }
 
   .navbar-content {
@@ -70,11 +69,11 @@
   .navbar-content-path a {
     display: block;
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 8px 0;
   }
 
   .navbar-logo-img {
-    max-width: 80%; /* Réduit la taille du logo sur les petits écrans */
+    max-width: 80%;
     max-height: auto;
   }
 }
